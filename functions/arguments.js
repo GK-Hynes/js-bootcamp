@@ -22,4 +22,4 @@ let getTip = function(total, tipPercent = 0.2) {
 };
 
 let tip = getTip(100, 0.15);
-console.log(tip); // 20
+console.log(tip);
