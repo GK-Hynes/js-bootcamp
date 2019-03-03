@@ -24,8 +24,8 @@
 // console.log(result);
 
 // Refactor
-let gradeCalc = function(score, max) {
-  let percent = (score / max) * 100;
+const gradeCalc = function(score, max) {
+  const percent = (score / max) * 100;
   let gradeLetter = "";
 
   if (percent >= 90) {
@@ -43,5 +43,5 @@ let gradeCalc = function(score, max) {
   return `You got a(n) ${gradeLetter} (${percent}%)`;
 };
 
-let result = gradeCalc(15, 20);
+const result = gradeCalc(15, 20);
 console.log(result);
