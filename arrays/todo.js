@@ -1,16 +1,23 @@
-const todos = ["make breakfast", "yoga", "shower", "programme", "walk"];
+const todos = [
+  { text: "make breakfast", completed: true },
+  { text: "yoga", completed: false },
+  { text: "shower", completed: false },
+  { text: "programme", completed: true },
+  { text: "walk", completed: false }
+];
 
-todos.splice(2, 1);
-todos.push("dancing practice");
-todos.shift();
+// Challenge
+// 1. Convert array to array of object => text, completed
+// 2. Create function to remove todo by text value
 
-console.log(`You have ${todos.length} todos`);
+const deleteTodo = function(todos, todoText) {
+  const index = todos.findIndex(function(todo) {
+    return todo.text.toLowerCase() === todoText.toLowerCase();
+  });
+  if (index > -1) {
+    todos.splice(index, 1);
+  }
+};
 
-// Print each item's index and content
-todos.forEach(function(todo, index) {
-  console.log(`${index + 1}. ${todo}`);
-});
-
-for (let count = 0; count < todos.length; count++) {
-  console.log(`${count + 1}. ${todos[count]}`);
-}
+deleteTodo(todos, "walk");
+console.log(todos);
