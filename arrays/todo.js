@@ -6,10 +6,6 @@ const todos = [
   { text: "walk", completed: false }
 ];
 
-// Challenge
-// 1. Convert array to array of object => text, completed
-// 2. Create function to remove todo by text value
-
 const deleteTodo = function(todos, todoText) {
   const index = todos.findIndex(function(todo) {
     return todo.text.toLowerCase() === todoText.toLowerCase();
@@ -25,7 +21,21 @@ const getThingsTodo = function(todos) {
   });
 };
 
+const sortTodos = function(todos) {
+  todos.sort(function(a, b) {
+    if (!a.completed && b.completed) {
+      return -1;
+    } else if (!b.completed && a.completed) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+};
+
 // deleteTodo(todos, "walk");
 // console.log(todos);
+// console.log(getThingsTodo(todos));
 
-console.log(getThingsTodo(todos));
+sortTodos(todos);
+console.log(todos);
