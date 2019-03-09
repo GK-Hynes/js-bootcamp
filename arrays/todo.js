@@ -19,5 +19,13 @@ const deleteTodo = function(todos, todoText) {
   }
 };
 
-deleteTodo(todos, "walk");
-console.log(todos);
+const getThingsTodo = function(todos) {
+  return todos.filter(function(todo) {
+    return !todo.completed;
+  });
+};
+
+// deleteTodo(todos, "walk");
+// console.log(todos);
+
+console.log(getThingsTodo(todos));
