@@ -1,10 +1,18 @@
-// DOM - Document Object Model
-// const p = document.querySelector("p");
-// p.remove();
+const notes = [
+  {
+    title: "My next trip",
+    body: "Go to Iceland"
+  },
+  {
+    title: "Habits",
+    body: "Eating better"
+  },
+  {
+    title: "Office updates",
+    body: "Get a new monitor"
+  }
+];
 
-const ps = document.querySelectorAll("p");
-ps.forEach(function(p) {
-  p.textContent = "*****";
-  // console.log(p.textContent);
-  // p.remove();
+document.querySelector("button").addEventListener("click", function(e) {
+  e.target.textContent = "Clicked";
 });
