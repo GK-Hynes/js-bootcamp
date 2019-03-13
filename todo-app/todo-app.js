@@ -34,17 +34,15 @@ const renderTodos = function(todos, filters) {
 
 renderTodos(todos, filters);
 
-// Listen for new todo
-document.querySelector("#add-todo").addEventListener("click", function(e) {
-  console.log("Add new todo");
-});
-
-// Listen for todo text change
-document.querySelector("#new-todo-text").addEventListener("input", function(e) {
-  console.log(e.target.value);
-});
-
 document.querySelector("#filter-todos").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
   renderTodos(todos, filters);
+});
+
+document.querySelector("#new-todo").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const newTodo = e.target.elements.newTodo.value;
+  todos.push({ text: newTodo, completed: false });
+  renderTodos(todos, filters);
+  e.target.elements.newTodo.value = "";
 });
