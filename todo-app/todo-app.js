@@ -1,16 +1,20 @@
-const todos = [
-  { text: "make breakfast", completed: true },
-  { text: "yoga", completed: false },
-  { text: "shower", completed: false },
-  { text: "programme", completed: true },
-  { text: "walk", completed: false }
-];
+// Todos
+let todos = [];
 
+// Filters
 filters = {
   searchText: "",
   hideCompleted: false
 };
 
+// Check for existing todos
+const todosJSON = localStorage.getItem("todos");
+
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON);
+}
+
+// Render todos to the page
 const renderTodos = function(todos, filters) {
   const filteredTodos = todos.filter(function(todo) {
     const searchTextMatch = todo.text
@@ -40,19 +44,23 @@ const renderTodos = function(todos, filters) {
 
 renderTodos(todos, filters);
 
+// Filter todos
 document.querySelector("#filter-todos").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
   renderTodos(todos, filters);
 });
 
+// Add new todo
 document.querySelector("#new-todo").addEventListener("submit", function(e) {
   e.preventDefault();
   const newTodo = e.target.elements.newTodo.value;
   todos.push({ text: newTodo, completed: false });
+  localStorage.setItem("todos", JSON.stringify(todos));
   renderTodos(todos, filters);
   e.target.elements.newTodo.value = "";
 });
 
+// Hide completed todos
 document
   .querySelector("#hide-completed")
   .addEventListener("change", function name(e) {
