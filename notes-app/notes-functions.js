@@ -16,19 +16,19 @@ const saveNotes = function(notes) {
 
 // Remove a note from the list
 const removeNote = function(id) {
-  const noteIndex = notes.findIndex(function(note){
-  return note.id === id;
+  const noteIndex = notes.findIndex(function(note) {
+    return note.id === id;
   });
 
-  if(noteIndex > -1) {
+  if (noteIndex > -1) {
     notes.splice(noteIndex, 1);
   }
-}
+};
 
 // Generate DOM structure for a note
 const generateNoteDOM = function(note) {
   const noteElement = document.createElement("div");
-  const textElement = document.createElement("span");
+  const textElement = document.createElement("a");
   const button = document.createElement("button");
 
   // Set up remove note button
@@ -38,7 +38,7 @@ const generateNoteDOM = function(note) {
     removeNote(note.id);
     saveNotes(notes);
     renderNotes(notes, filters);
-  })
+  });
 
   // Set up note title text
   if (note.title.length > 0) {
@@ -46,7 +46,7 @@ const generateNoteDOM = function(note) {
   } else {
     textElement.textContent = "Unnamed note";
   }
-
+  textElement.setAttribute("href", `edit.html#${note.id}`);
   noteElement.appendChild(textElement);
 
   return noteElement;
