@@ -3,7 +3,8 @@ let notes = getSavedNotes();
 
 // Filters
 const filters = {
-  searchText: ""
+  searchText: "",
+  sortBy: "byEdited"
 };
 
 // Render notes to the page
@@ -32,7 +33,8 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
 
 // Filter notes
 document.querySelector("#filter-by").addEventListener("change", function(e) {
-  console.log(e.target.value);
+  filters.sortBy = e.target.value;
+  renderNotes(notes, filters);
 });
 
 window.addEventListener("storage", function(e) {
