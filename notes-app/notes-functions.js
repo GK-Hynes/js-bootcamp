@@ -90,9 +90,9 @@ const sortNotes = (notes, sortBy) => {
 // Render notes to the page
 const renderNotes = (notes, filters) => {
   notes = sortNotes(notes, filters.sortBy);
-  const filteredNotes = notes.filter(note => {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
+  const filteredNotes = notes.filter(note =>
+    note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+  );
 
   document.querySelector("#notes").innerHTML = "";
 

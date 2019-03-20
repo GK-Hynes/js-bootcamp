@@ -11,29 +11,27 @@ filters = {
 renderTodos(todos, filters);
 
 // Filter todos
-document.querySelector("#filter-todos").addEventListener("input", function(e) {
+document.querySelector("#filter-todos").addEventListener("input", e => {
   filters.searchText = e.target.value;
   renderTodos(todos, filters);
 });
 
 // Add new todo
-document.querySelector("#new-todo").addEventListener("submit", function(e) {
+document.querySelector("#new-todo").addEventListener("submit", e => {
   e.preventDefault();
   const newTodo = e.target.elements.newTodo.value;
-  todos.push({ 
+  todos.push({
     id: uuidv4(),
-    text: newTodo, 
+    text: newTodo,
     completed: false
-   });
+  });
   saveTodos(todos);
   renderTodos(todos, filters);
   e.target.elements.newTodo.value = "";
 });
 
 // Hide completed todos
-document
-  .querySelector("#hide-completed")
-  .addEventListener("change", function name(e) {
-    filters.hideCompleted = e.target.checked;
-    renderTodos(todos, filters);
-  });
+document.querySelector("#hide-completed").addEventListener("change", e => {
+  filters.hideCompleted = e.target.checked;
+  renderTodos(todos, filters);
+});
