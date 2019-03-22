@@ -25,6 +25,10 @@
 
 // Refactor
 const gradeCalc = function(score, max) {
+  if (typeof score !== "number" || typeof max !== "number") {
+    throw Error("Please provide numbers only");
+  }
+
   const percent = (score / max) * 100;
   let gradeLetter = "";
 
@@ -43,5 +47,9 @@ const gradeCalc = function(score, max) {
   return `You got a(n) ${gradeLetter} (${percent}%)`;
 };
 
-const result = gradeCalc(15, 20);
-console.log(result);
+try {
+  const result = gradeCalc(15, 20);
+  console.log(result);
+} catch (e) {
+  console.log(e.message);
+}
