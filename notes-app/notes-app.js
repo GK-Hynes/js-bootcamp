@@ -1,3 +1,5 @@
+"use strict"
+
 // Get notes from localStorage
 let notes = getSavedNotes();
 

@@ -1,3 +1,5 @@
+"use strict"
+
 // Todos
 const todos = getSavedTodos();
 
