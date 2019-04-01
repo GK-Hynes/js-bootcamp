@@ -20,14 +20,13 @@ getPuzzle("2")
     console.log(`Error: ${err}`);
   });
 
-// getCountry("IE").then(
-//   country => {
-//     console.log(country.name);
-//   },
-//   err => {
-//     console.log(`Error: ${err}`);
-//   }
-// );
+getCountry("IE")
+  .then(country => {
+    console.log(country.name);
+  })
+  .catch(err => {
+    console.log(`Error: ${err}`);
+  });
 
 // fetch("http://puzzle.mead.io/puzzle", {})
 //   .then(response => {
