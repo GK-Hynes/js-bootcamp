@@ -56,10 +56,10 @@ getDataPromise(10)
     return getDataPromise(data);
   })
   .then(data => {
-    return getDataPromise(data);
+    return "This is some test data";
   })
   .then(data => {
-    return getDataPromise(data);
+    console.log(data);
   })
   .catch(err => {
     console.log(err);
