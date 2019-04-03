@@ -1,37 +1,24 @@
 const puzzleElement = document.querySelector("#puzzle");
 const guessesElement = document.querySelector("#guesses");
-const game1 = new Hangman("New York", 3);
-
-puzzleElement.textContent = game1.puzzle;
-guessesElement.textContent = game1.statusMessage;
+let game;
 
 window.addEventListener("keypress", e => {
   const guess = String.fromCharCode(e.charCode);
-  game1.makeGuess(guess);
-  puzzleElement.textContent = game1.puzzle;
-  guessesElement.textContent = game1.statusMessage;
+  game.makeGuess(guess);
+  renderGame();
 });
 
-getPuzzle("2")
-  .then(puzzle => {
-    console.log(puzzle);
-  })
-  .catch(err => {
-    console.log(`Error: ${err}`);
-  });
+const renderGame = () => {
+  puzzleElement.textContent = game.puzzle;
+  guessesElement.textContent = game.statusMessage;
+};
 
-getCountry("IE")
-  .then(country => {
-    console.log(country.name);
-  })
-  .catch(err => {
-    console.log(`Error: ${err}`);
-  });
+const startGame = async () => {
+  const puzzle = await getPuzzle("2");
+  game = new Hangman(puzzle, 5);
+  renderGame();
+};
 
-getCurrentCountry()
-  .then(country => {
-    console.log(country.name);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+document.querySelector("#reset").addEventListener("click", startGame);
+
+startGame();
