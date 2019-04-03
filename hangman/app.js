@@ -28,13 +28,10 @@ getCountry("IE")
     console.log(`Error: ${err}`);
   });
 
-getLocation()
-  .then(location => {
-    return getCountry(location.country);
-  })
+getCurrentCountry()
   .then(country => {
     console.log(country.name);
   })
   .catch(err => {
-    console.log(`Error: ${err}`);
+    console.log(err);
   });

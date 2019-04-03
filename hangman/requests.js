@@ -28,3 +28,8 @@ const getLocation = async () => {
     throw new Error("Unable to fetch location");
   }
 };
+
+const getCurrentCountry = async () => {
+  const location = await getLocation();
+  return getCountry(location.country);
+};
