@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // Read notes from localStorage
 const getSavedNotes = () => {
@@ -27,29 +27,29 @@ const removeNote = id => {
 
 // Generate DOM structure for a note
 const generateNoteDOM = note => {
-  const noteElement = document.createElement("div");
-  const textElement = document.createElement("a");
-  const button = document.createElement("button");
-
-  // Set up remove note button
-  button.textContent = "x";
-  noteElement.appendChild(button);
-  button.addEventListener("click", () => {
-    removeNote(note.id);
-    saveNotes(notes);
-    renderNotes(notes, filters);
-  });
+  const noteEl = document.createElement("a");
+  const textEl = document.createElement("p");
+  const statusEl = document.createElement("p");
 
   // Set up note title text
   if (note.title.length > 0) {
-    textElement.textContent = note.title;
+    textEl.textContent = note.title;
   } else {
-    textElement.textContent = "Unnamed note";
+    textEl.textContent = "Unnamed note";
   }
-  textElement.setAttribute("href", `edit.html#${note.id}`);
-  noteElement.appendChild(textElement);
+  textEl.classList.add("list-item__title");
+  noteEl.appendChild(textEl);
 
-  return noteElement;
+  // Set up the link
+  noteEl.setAttribute("href", `edit.html#${note.id}`);
+  noteEl.classList.add("list-item");
+
+  // Set up status message
+  statusEl.textContent = generateLastEdited(note.updatedAt);
+  statusEl.classList.add("list-item__subtitle");
+  noteEl.appendChild(statusEl);
+
+  return noteEl;
 };
 
 // Sort notes by one of three ways
@@ -91,17 +91,26 @@ const sortNotes = (notes, sortBy) => {
 
 // Render notes to the page
 const renderNotes = (notes, filters) => {
+  const notesEl = document.querySelector("#notes");
+
   notes = sortNotes(notes, filters.sortBy);
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   );
 
-  document.querySelector("#notes").innerHTML = "";
+  notesEl.innerHTML = "";
 
-  filteredNotes.forEach(note => {
-    const noteElement = generateNoteDOM(note);
-    document.querySelector("#notes").appendChild(noteElement);
-  });
+  if (filteredNotes.length > 0) {
+    filteredNotes.forEach(note => {
+      const noteEl = generateNoteDOM(note);
+      notesEl.appendChild(noteEl);
+    });
+  } else {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.textContent = "No notes to show";
+    emptyMessage.classList.add("empty-message");
+    notesEl.appendChild(emptyMessage);
+  }
 };
 
 // Generate last edited message
