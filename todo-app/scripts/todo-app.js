@@ -1,10 +1,10 @@
-"use strict"
+"use strict";
 
 // Todos
 const todos = getSavedTodos();
 
 // Filters
-filters = {
+const filters = {
   searchText: "",
   hideCompleted: false
 };
@@ -21,15 +21,17 @@ document.querySelector("#filter-todos").addEventListener("input", e => {
 // Add new todo
 document.querySelector("#new-todo").addEventListener("submit", e => {
   e.preventDefault();
-  const newTodo = e.target.elements.newTodo.value;
-  todos.push({
-    id: uuidv4(),
-    text: newTodo,
-    completed: false
-  });
-  saveTodos(todos);
-  renderTodos(todos, filters);
-  e.target.elements.newTodo.value = "";
+  const text = e.target.elements.newTodo.value.trim();
+  if (text.length > 0) {
+    todos.push({
+      id: uuidv4(),
+      text: text,
+      completed: false
+    });
+    saveTodos(todos);
+    renderTodos(todos, filters);
+    e.target.elements.newTodo.value = "";
+  }
 });
 
 // Hide completed todos
