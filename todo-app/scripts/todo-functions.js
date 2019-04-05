@@ -87,7 +87,7 @@ const generateTodoDOM = todo => {
 
   // Set up container
   todoEl.classList.add("list-item");
-  containerEl.classList.add("lit-item__container");
+  containerEl.classList.add("list-item__container");
   todoEl.appendChild(containerEl);
 
   // Set up todo button
