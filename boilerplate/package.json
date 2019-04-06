@@ -4,6 +4,7 @@
   "description": "",
   "main": "input.js",
   "scripts": {
+    "webpack": "webpack",
     "build": "babel src/index.js -o public/scripts/bundle.js --presets=@babel/preset-env --watch"
   },
   "author": "",
@@ -12,6 +13,8 @@
   "dependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3"
+    "@babel/preset-env": "^7.4.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
