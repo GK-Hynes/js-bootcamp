@@ -1,9 +1,10 @@
-"use strict"
+"use strict";
 
 const titleElement = document.querySelector("#note-title");
 const bodyElement = document.querySelector("#note-body");
 const dateElement = document.querySelector("#last-edited");
 const removeButton = document.querySelector("#remove-note");
+const saveButton = document.querySelector("#save-note");
 const noteId = location.hash.substring(1);
 let notes = getSavedNotes();
 
@@ -36,6 +37,11 @@ bodyElement.addEventListener("input", e => {
 
 removeButton.addEventListener("click", e => {
   removeNote(note.id);
+  saveNotes(notes);
+  location.assign("index.html");
+});
+
+saveButton.addEventListener("click", e => {
   saveNotes(notes);
   location.assign("index.html");
 });
