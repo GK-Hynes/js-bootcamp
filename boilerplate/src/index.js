@@ -1,11 +1,8 @@
-const name = "Macdara";
+import square, { add, name } from "./utilities";
+import scream from "./scream";
+
+console.log("index.js");
+console.log(add(33, 51));
 console.log(name);
-
-class Hangman {
-  myMethod() {
-    return "Testing";
-  }
-}
-
-const hangman = new Hangman();
-console.log(hangman.myMethod());
+console.log(scream(name));
+console.log(square(10));
