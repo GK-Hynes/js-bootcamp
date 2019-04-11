@@ -30,20 +30,19 @@ import uuidv4 from "uuid/v4";
 
 let todos = [];
 
+// Get saved todos from localStorage
 const loadTodos = () => {
   const todosJSON = localStorage.getItem("todos");
 
   try {
-    return todosJSON ? JSON.parse(todosJSON) : [];
+    todos = todosJSON ? JSON.parse(todosJSON) : [];
   } catch (e) {
-    return [];
+    todos = [];
   }
 };
 
-loadTodos();
-
 // Save todos to localStorage
-const saveTodos = todos => {
+const saveTodos = () => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
@@ -52,15 +51,12 @@ const getTodos = () => todos;
 
 // Create new todo
 const createTodo = text => {
-  if (text.length > 0) {
-    todos.push({
-      id: uuidv4(),
-      text: text,
-      completed: false
-    });
-    saveTodos();
-    renderTodos(todos, filters);
-  }
+  todos.push({
+    id: uuidv4(),
+    text: text,
+    completed: false
+  });
+  saveTodos();
 };
 
 // Remove a todo from the list
@@ -69,6 +65,7 @@ const removeTodo = id => {
 
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
+    saveTodos();
   }
 };
 
@@ -78,15 +75,10 @@ const toggleTodo = id => {
 
   if (todo) {
     todo.completed = !todo.completed;
+    saveTodos();
   }
 };
 
-export {
-  todos,
-  loadTodos,
-  saveTodos,
-  getTodos,
-  createTodo,
-  removeTodo,
-  toggleTodo
-};
+loadTodos();
+
+export { loadTodos, getTodos, createTodo, removeTodo, toggleTodo };
